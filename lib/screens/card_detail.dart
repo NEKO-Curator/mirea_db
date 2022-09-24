@@ -146,6 +146,8 @@ class _CardDetailState extends State<CardDetail> {
       maxWidth: 1800,
       maxHeight: 1800,
     );
-    picture = await image!.readAsBytes();
+    try {
+      picture = await image!.readAsBytes();
+    } catch (e) {}
   }
 }
