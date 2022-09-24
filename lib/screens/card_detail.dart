@@ -8,7 +8,7 @@ import '../services/db_helper.dart';
 class CardDetail extends StatefulWidget {
   final Pos? pos;
 
-  CardDetail({Key? key, this.pos}) : super(key: key);
+  const CardDetail({Key? key, this.pos}) : super(key: key);
 
   @override
   State<CardDetail> createState() => _CardDetailState();
@@ -148,6 +148,7 @@ class _CardDetailState extends State<CardDetail> {
     );
     try {
       picture = await image!.readAsBytes();
+      // ignore: empty_catches
     } catch (e) {}
   }
 }
