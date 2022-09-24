@@ -1,6 +1,9 @@
+import 'dart:developer';
 import 'dart:typed_data';
-
+import 'package:dio/dio.dart' as diolib;
+import 'package:logger/logger.dart';
 import 'package:flutter/material.dart';
+import 'package:mirea_db_2/api/translate_api.dart';
 import 'package:mirea_db_2/model/pos_model.dart';
 import 'package:image_picker/image_picker.dart';
 import '../services/db_helper.dart';
@@ -15,6 +18,8 @@ class CardDetail extends StatefulWidget {
 }
 
 class _CardDetailState extends State<CardDetail> {
+  bool titleLanguageFlag = false;
+  bool descriptionLanguageFlag = false;
   Uint8List? picture;
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
@@ -39,17 +44,23 @@ class _CardDetailState extends State<CardDetail> {
               child: TextFormField(
                 controller: titleController,
                 maxLines: 1,
-                decoration: const InputDecoration(
-                    //hintText: 'Введите название',
-                    labelText: 'Название',
-                    border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.white,
-                          width: 0.75,
-                        ),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10.0),
-                        ))),
+                decoration: InputDecoration(
+                  //hintText: 'Введите название',
+                  labelText: 'Название',
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.white,
+                      width: 0.75,
+                    ),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10.0),
+                    ),
+                  ),
+                  suffixIcon: IconButton(
+                    onPressed: () => titleTranslator(),
+                    icon: Icon(Icons.language),
+                  ),
+                ),
               ),
             ),
             TextFormField(
@@ -150,5 +161,16 @@ class _CardDetailState extends State<CardDetail> {
       picture = await image!.readAsBytes();
       // ignore: empty_catches
     } catch (e) {}
+  }
+
+  titleTranslator() async {
+    titleLanguageFlag = !titleLanguageFlag;
+    if (titleLanguageFlag && titleController.value.text.isNotEmpty) {
+      final logger = Logger();
+      final dio = diolib.Dio();
+      final client = RestClient(dio);
+      Task task = Task(text: titleController.value.text);
+      log(client.translate(Task()).toString());
+    }
   }
 }

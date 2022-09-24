@@ -11,14 +11,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  retrofit: '>=3.0.0 <4.0.0'
+  logger: any  #for logging purpose
   image_picker: ^0.8.5+3
   sqflite: ^2.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  retrofit_generator: '>=4.0.0 <5.0.0'
+  build_runner: ^2.2.1
+  json_serializable: '>4.4.0'
   flutter_lints: ^2.0.0
 
 flutter:
