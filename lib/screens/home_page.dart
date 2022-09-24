@@ -23,8 +23,8 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () async {
-            await Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const CardDetail()));
+            await Navigator.push(
+                context, MaterialPageRoute(builder: (context) => CardDetail()));
             setState(() {});
           },
           label: const Text('Добавить'),
