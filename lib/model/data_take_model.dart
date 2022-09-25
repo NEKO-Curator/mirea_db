@@ -1,45 +1,16 @@
-//https://pub.dev/packages/retrofit
-//flutter pub run build_runner build
-//https://rapidapi.com/microsoft-azure-org-microsoft-cognitive-services/api/microsoft-translator-text
 import 'dart:developer';
 
-import 'package:json_annotation/json_annotation.dart';
-import 'package:retrofit/retrofit.dart';
-import 'package:dio/dio.dart' as diolib;
-
-part 'translate_api.g.dart';
-
-@RestApi(baseUrl: "https://microsoft-translator-text.p.rapidapi.com/")
-abstract class RestClient {
-  factory RestClient(diolib.Dio dio, {String baseUrl}) = _RestClient;
-
-  @POST(
-      "/translate?to%5B0%5D=ru&api-version=3.0&profanityAction=NoAction&textType=plain")
-  @Headers(<String, dynamic>{
-    "content-type": "application/json",
-    "X-RapidAPI-Key": "e0cfc51f6emshe3ad569772cd49ap1a4198jsn3e02d072de69",
-    "X-RapidAPI-Host": "microsoft-translator-text.p.rapidapi.com"
-  })
-  Future<String> translate(@Body() Task text);
-}
-
-@JsonSerializable()
-class Task {
-  String? text;
-
-  Task({this.text});
-
-  factory Task.fromJson(Map<String, dynamic> json) => _$TaskFromJson(json);
-  Map<String, dynamic> toJson() => _$TaskToJson(this);
-}
-
-class TrResponse {
+class DataTake {
   DetectedLanguage? detectedLanguage;
   List<Translations>? translations;
 
-  TrResponse({this.detectedLanguage, this.translations});
+  DataTake({this.detectedLanguage, this.translations});
+  String getTranslationText() {
+    // log('DataTake toString ${translations![0].toString()}');
+    return translations?[0].toString().toString() ?? '';
+  }
 
-  TrResponse.fromJson(Map<String, dynamic> json) {
+  DataTake.fromJson(Map<String, dynamic> json) {
     detectedLanguage = json['detectedLanguage'] != null
         ? new DetectedLanguage.fromJson(json['detectedLanguage'])
         : null;
@@ -65,7 +36,7 @@ class TrResponse {
 
 class DetectedLanguage {
   String? language;
-  int? score;
+  double? score;
 
   DetectedLanguage({this.language, this.score});
 
@@ -87,6 +58,10 @@ class Translations {
   String? to;
 
   Translations({this.text, this.to});
+  @override
+  String toString() {
+    return text.toString();
+  }
 
   Translations.fromJson(Map<String, dynamic> json) {
     text = json['text'];

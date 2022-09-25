@@ -380,6 +380,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.2"
+  petitparser:
+    dependency: transitive
+    description:
+      name: petitparser
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.0.0"
   plugin_platform_interface:
     dependency: transitive
     description:
@@ -574,6 +581,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.0"
+  wnetworking:
+    dependency: "direct main"
+    description:
+      name: wnetworking
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.3"
+  xml:
+    dependency: transitive
+    description:
+      name: xml
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "6.1.0"
+  xml2json:
+    dependency: transitive
+    description:
+      name: xml2json
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.3.5"
   yaml:
     dependency: transitive
     description:
