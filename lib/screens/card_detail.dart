@@ -18,6 +18,8 @@ class CardDetail extends StatefulWidget {
 }
 
 class _CardDetailState extends State<CardDetail> {
+  String titleBuffer = '';
+  String descriptionBuffer = '';
   bool titleLanguageFlag = false;
   bool descriptionLanguageFlag = false;
   Uint8List? picture;
@@ -170,18 +172,27 @@ class _CardDetailState extends State<CardDetail> {
   }
 
   titleTranslator() async {
-    titleLanguageFlag = !titleLanguageFlag;
-    if (titleLanguageFlag && titleController.value.text.isNotEmpty) {
-      titleController.text = await fetchTranslate(titleController.text);
+    if (titleController.text.isNotEmpty) {
+      titleLanguageFlag = !titleLanguageFlag;
+      if (titleLanguageFlag) {
+        titleBuffer = titleController.text;
+        titleController.text = await fetchTranslate(titleController.text);
+      } else {
+        titleController.text = titleBuffer;
+      }
     }
   }
 
   descriptionTranslator() async {
-    descriptionLanguageFlag = !descriptionLanguageFlag;
-    if (descriptionLanguageFlag &&
-        descriptionController.value.text.isNotEmpty) {
-      descriptionController.text =
-          await fetchTranslate(descriptionController.text);
+    if (descriptionController.text.isNotEmpty) {
+      descriptionLanguageFlag = !descriptionLanguageFlag;
+      if (descriptionLanguageFlag) {
+        descriptionBuffer = descriptionController.text;
+        descriptionController.text =
+            await fetchTranslate(descriptionController.text);
+      } else {
+        descriptionController.text = descriptionBuffer;
+      }
     }
   }
 }
