@@ -36,7 +36,7 @@ class _CardDetailState extends State<CardDetail> {
               widget.pos!.description != descriptionController.text
           ? descriptionController.text
           : widget.pos!.description;
-      picture = widget.pos!.picture;
+      picture = picture != widget.pos!.picture ? picture : widget.pos!.picture;
     }
 
     return Scaffold(
