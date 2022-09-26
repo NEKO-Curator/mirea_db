@@ -1,7 +1,5 @@
-import 'dart:developer';
 import 'dart:typed_data';
 import 'package:dio/dio.dart' as diolib;
-import 'package:logger/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:mirea_db_2/api/test_api.dart';
 import 'package:mirea_db_2/model/pos_model.dart';
@@ -25,11 +23,20 @@ class _CardDetailState extends State<CardDetail> {
   Uint8List? picture;
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     if (widget.pos != null) {
-      titleController.text = widget.pos!.title;
-      descriptionController.text = widget.pos!.description;
+      //фикс цыганского бага
+      titleController.text = titleController.text.isNotEmpty &&
+              widget.pos!.title != titleController.text
+          ? titleController.text
+          : widget.pos!.title;
+      descriptionController.text = descriptionController.text.isNotEmpty &&
+              widget.pos!.description != descriptionController.text
+          ? descriptionController.text
+          : widget.pos!.description;
+      picture = widget.pos!.picture;
     }
 
     return Scaffold(
@@ -85,7 +92,6 @@ class _CardDetailState extends State<CardDetail> {
                 ),
               ),
               keyboardType: TextInputType.multiline,
-              onChanged: (str) {},
               maxLines: 5,
             ),
             Padding(
@@ -115,8 +121,8 @@ class _CardDetailState extends State<CardDetail> {
                 width: MediaQuery.of(context).size.width,
                 child: ElevatedButton(
                     onPressed: () async {
-                      final title = titleController.value.text;
-                      final description = descriptionController.value.text;
+                      final title = titleController.text;
+                      final description = descriptionController.text;
                       if (title.isEmpty || description.isEmpty) {
                         return;
                       }
