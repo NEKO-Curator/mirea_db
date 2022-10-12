@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:mirea_db_2/model/pos_model.dart';
 import 'package:mirea_db_2/screens/card_detail.dart';
@@ -20,11 +22,12 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 235, 69, 69),
           title: const Text('MYON Cafe'),
+          centerTitle: true,
         ),
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () async {
-            await Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const CardDetail()));
+            await Navigator.push(
+                context, MaterialPageRoute(builder: (context) => CardDetail()));
             setState(() {});
           },
           label: const Text('Добавить'),

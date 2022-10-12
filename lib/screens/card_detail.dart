@@ -1,25 +1,47 @@
+import 'dart:typed_data';
+import 'package:dio/dio.dart' as diolib;
 import 'package:flutter/material.dart';
+import 'package:mirea_db_2/api/test_api.dart';
 import 'package:mirea_db_2/model/pos_model.dart';
-
+import 'package:image_picker/image_picker.dart';
 import '../services/db_helper.dart';
 
-class CardDetail extends StatelessWidget {
+class CardDetail extends StatefulWidget {
   final Pos? pos;
+
   const CardDetail({Key? key, this.pos}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final titleController = TextEditingController();
-    final descriptionController = TextEditingController();
+  State<CardDetail> createState() => _CardDetailState();
+}
 
-    if (pos != null) {
-      titleController.text = pos!.title;
-      descriptionController.text = pos!.description;
+class _CardDetailState extends State<CardDetail> {
+  String titleBuffer = '';
+  String descriptionBuffer = '';
+  bool titleLanguageFlag = false;
+  bool descriptionLanguageFlag = false;
+  Uint8List? picture;
+  final titleController = TextEditingController();
+  final descriptionController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    if (widget.pos != null) {
+      //фикс цыганского бага
+      titleController.text = titleController.text.isNotEmpty &&
+              widget.pos!.title != titleController.text
+          ? titleController.text
+          : widget.pos!.title;
+      descriptionController.text = descriptionController.text.isNotEmpty &&
+              widget.pos!.description != descriptionController.text
+          ? descriptionController.text
+          : widget.pos!.description;
+      picture = picture != widget.pos!.picture ? picture : widget.pos!.picture;
     }
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(pos == null ? 'Добаваить' : 'Редактировать'),
+        title: Text(widget.pos == null ? 'Добаваить' : 'Редактировать'),
         centerTitle: true,
       ),
       body: Padding(
@@ -31,35 +53,65 @@ class CardDetail extends StatelessWidget {
               child: TextFormField(
                 controller: titleController,
                 maxLines: 1,
-                decoration: const InputDecoration(
-                    //hintText: 'Введите название',
-                    labelText: 'Название',
-                    border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.white,
-                          width: 0.75,
-                        ),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10.0),
-                        ))),
+                decoration: InputDecoration(
+                  //hintText: 'Введите название',
+                  labelText: 'Название',
+                  border: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.white,
+                      width: 0.75,
+                    ),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10.0),
+                    ),
+                  ),
+                  suffixIcon: IconButton(
+                    onPressed: () => titleTranslator(),
+                    icon: const Icon(Icons.language),
+                  ),
+                ),
               ),
             ),
             TextFormField(
               controller: descriptionController,
-              decoration: const InputDecoration(
-                  //hintText: 'Введите описание',
-                  labelText: 'Описание',
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.white,
-                        width: 0.75,
-                      ),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10.0),
-                      ))),
+              decoration: InputDecoration(
+                //hintText: 'Введите описание',
+                labelText: 'Описание',
+                border: const OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.white,
+                    width: 0.75,
+                  ),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10.0),
+                  ),
+                ),
+                suffixIcon: IconButton(
+                  onPressed: () => descriptionTranslator(),
+                  icon: const Icon(Icons.language),
+                ),
+              ),
               keyboardType: TextInputType.multiline,
-              onChanged: (str) {},
               maxLines: 5,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: ElevatedButton(
+                style: ButtonStyle(
+                    shape:
+                        MaterialStateProperty.all(const RoundedRectangleBorder(
+                            side: BorderSide(
+                              color: Colors.white,
+                              width: 0.75,
+                            ),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10.0),
+                            )))),
+                onPressed: () {
+                  _getFromGallery();
+                },
+                child: const Text("Картинка"),
+              ),
             ),
             const Spacer(),
             Padding(
@@ -69,16 +121,19 @@ class CardDetail extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 child: ElevatedButton(
                     onPressed: () async {
-                      final title = titleController.value.text;
-                      final description = descriptionController.value.text;
-
+                      final title = titleController.text;
+                      final description = descriptionController.text;
                       if (title.isEmpty || description.isEmpty) {
                         return;
                       }
 
                       final Pos model = Pos(
-                          title: title, description: description, id: pos?.id);
-                      if (pos == null) {
+                        title: title,
+                        description: description,
+                        id: widget.pos?.id,
+                        picture: picture,
+                      );
+                      if (widget.pos == null) {
                         await DBHelper.addPos(model);
                       } else {
                         await DBHelper.updatePos(model);
@@ -98,7 +153,7 @@ class CardDetail extends StatelessWidget {
                                   Radius.circular(10.0),
                                 )))),
                     child: Text(
-                      pos == null ? 'Сохранить' : 'Редактировать',
+                      widget.pos == null ? 'Сохранить' : 'Редактировать',
                       style: const TextStyle(fontSize: 20),
                     )),
               ),
@@ -107,5 +162,43 @@ class CardDetail extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  _getFromGallery() async {
+    final ImagePicker picker = ImagePicker();
+    final image = await picker.pickImage(
+      source: ImageSource.gallery,
+      maxWidth: 1800,
+      maxHeight: 1800,
+    );
+    try {
+      picture = await image!.readAsBytes();
+      // ignore: empty_catches
+    } catch (e) {}
+  }
+
+  titleTranslator() async {
+    if (titleController.text.isNotEmpty) {
+      titleLanguageFlag = !titleLanguageFlag;
+      if (titleLanguageFlag) {
+        titleBuffer = titleController.text;
+        titleController.text = await fetchTranslate(titleController.text);
+      } else {
+        titleController.text = titleBuffer;
+      }
+    }
+  }
+
+  descriptionTranslator() async {
+    if (descriptionController.text.isNotEmpty) {
+      descriptionLanguageFlag = !descriptionLanguageFlag;
+      if (descriptionLanguageFlag) {
+        descriptionBuffer = descriptionController.text;
+        descriptionController.text =
+            await fetchTranslate(descriptionController.text);
+      } else {
+        descriptionController.text = descriptionBuffer;
+      }
+    }
   }
 }
