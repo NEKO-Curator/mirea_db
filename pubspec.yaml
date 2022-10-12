@@ -11,19 +11,22 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  retrofit: '>=3.0.0 <4.0.0'
-  logger: any  #for logging purpose
   image_picker: ^0.8.5+3
   sqflite: ^2.1.0
-  wnetworking: ^0.4.3
-
+  firebase_core: ^1.24.0
+  firebase_auth: ^3.11.2
+  cloud_firestore: ^3.5.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  retrofit_generator: '>=4.0.0 <5.0.0'
-  build_runner: ^2.2.1
   json_serializable: '>4.4.0'
   flutter_lints: ^2.0.0
 
 flutter:
   uses-material-design: true
+fonts:
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-Regular.ttf
+        - asset: assets/fonts/Montserrat-Bold.ttf
+          weight: 700

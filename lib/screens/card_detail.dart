@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-import 'package:dio/dio.dart' as diolib;
 import 'package:flutter/material.dart';
 import 'package:mirea_db_2/api/test_api.dart';
 import 'package:mirea_db_2/model/pos_model.dart';
