@@ -92,24 +92,25 @@ class _SignupPageState extends State<SignupPage> {
               const SizedBox(
                 height: 5.0,
               ),
-              const SizedBox(
+              SizedBox(
                 height: 40,
+                child: OutlinedButton(
+                    onPressed: () async {
+                      Password.dirty(_passwordController.text).valid &&
+                              Email.dirty(_emailController.text).valid
+                          ? _register()
+                          : ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text(
+                                      'Проверьте правильность ввода и введите еще раз')));
+                    },
+                    child: const Center(
+                        child: Text('ЗАРЕГИСТРИРОВАТЬСЯ',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Montserrat')))),
               ),
-              OutlinedButton(
-                  onPressed: () async {
-                    Password.dirty(_passwordController.text).valid &&
-                            Email.dirty(_emailController.text).valid
-                        ? _register()
-                        : ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                            content: Text(
-                                'Проверьте правильность ввода и введите еще раз')));
-                  },
-                  child: const Center(
-                      child: Text('ЗАРЕГИСТРИРОВАТЬСЯ',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Montserrat')))),
               const SizedBox(
                 height: 15,
               ),

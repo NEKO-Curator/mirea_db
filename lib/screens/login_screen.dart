@@ -103,28 +103,22 @@ class _LoginPageState extends State<LoginPage> {
               ),
               SizedBox(
                 height: 40,
-                child: Material(
-                  borderRadius: BorderRadius.circular(20),
-                  shadowColor: Colors.greenAccent,
-                  color: Colors.black,
-                  elevation: 7,
-                  child: GestureDetector(
-                      onTap: () async {
-                        Password.dirty(_passwordController.text).valid &&
-                                Email.dirty(_emailController.text).valid
-                            ? _singIn()
-                            : ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content: Text(
-                                        'Проверьте правильность ввода и введите еще раз')));
-                      },
-                      child: const Center(
-                          child: Text('ВОЙТИ',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Montserrat')))),
-                ),
+                child: OutlinedButton(
+                    onPressed: () async {
+                      Password.dirty(_passwordController.text).valid &&
+                              Email.dirty(_emailController.text).valid
+                          ? _singIn()
+                          : ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text(
+                                      'Проверьте правильность ввода и введите еще раз')));
+                    },
+                    child: const Center(
+                        child: Text('ВОЙТИ',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Montserrat')))),
               ),
               const SizedBox(
                 height: 15,
