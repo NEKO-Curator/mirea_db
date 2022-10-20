@@ -18,7 +18,7 @@ class PosWidget extends StatelessWidget {
       onTap: onTap,
       onLongPress: onLongPress,
       child: Card(
-        color: Colors.white,
+        color: Colors.grey,
         elevation: 2.0,
         child: ListTile(
           leading: SizedBox(
