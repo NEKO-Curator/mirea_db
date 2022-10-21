@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "476884707723",
+    "project_id": "mirea-db",
+    "storage_bucket": "mirea-db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:476884707723:android:9cdfe7d5fe046b21de678e",
+        "android_client_info": {
+          "package_name": "com.example.mirea_db_2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "476884707723-gf47rrqmdglqd7lo4sl246mrp9cb258e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mirea_db_2",
+            "certificate_hash": "9ffed08f889d09edbc6b3f200118d859ef01cb46"
+          }
+        },
+        {
+          "client_id": "476884707723-un5dr7tnvf9t4tbc5q4ppqp6vt55lqf5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAT3PpCU9IOx6xtFP-tinlEg55IgsfMH-0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "476884707723-un5dr7tnvf9t4tbc5q4ppqp6vt55lqf5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
