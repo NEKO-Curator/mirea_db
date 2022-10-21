@@ -1,16 +1,13 @@
-import 'dart:developer';
+
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:mirea_db_2/model/pos_model.dart';
 import 'package:mirea_db_2/screens/firestore_screens/firestore_card_detail_page.dart';
 import 'package:mirea_db_2/screens/sql_screens/card_detail.dart';
 import 'package:mirea_db_2/screens/firestore_screens/firestore_cards_page.dart';
 import 'package:mirea_db_2/screens/sql_screens/local_cards_page.dart';
 import 'package:mirea_db_2/screens/login_screen.dart';
 
-import '../services/db_helper.dart';
-import '../widgets/pos_widget.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -112,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
     } else if (_currentIndex == 1) {
       return Container();
     } else if (_currentIndex == 2) {
-      return FireStoreCardsWidget();
+      return const FireStoreCardsWidget();
     } else {
       return Container();
     }

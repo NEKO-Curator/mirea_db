@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+// ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 import 'package:mirea_db_2/model/data_take_model.dart';
 
@@ -25,7 +26,7 @@ Future<String> fetchTranslate(String text) async {
     var temp = DataTake.fromJson(await json.decode(endResponse.body)[0]);
     return temp.getTranslationText();
   } else {
-    print(response.reasonPhrase);
+    // print(response.reasonPhrase);
     return 'null';
   }
 }

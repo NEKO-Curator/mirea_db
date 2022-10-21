@@ -22,8 +22,8 @@ class MyApp extends StatelessWidget {
       ),
       title: 'MYONCafe',
       home: FirebaseAuth.instance.currentUser != null
-          ? MyHomePage()
-          : LoginPage(),
+          ? const MyHomePage()
+          : const LoginPage(),
     );
   }
 }

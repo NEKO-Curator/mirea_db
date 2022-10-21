@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 class DataTake {
   DetectedLanguage? detectedLanguage;
   List<Translations>? translations;
@@ -12,23 +10,23 @@ class DataTake {
 
   DataTake.fromJson(Map<String, dynamic> json) {
     detectedLanguage = json['detectedLanguage'] != null
-        ? new DetectedLanguage.fromJson(json['detectedLanguage'])
+        ? DetectedLanguage.fromJson(json['detectedLanguage'])
         : null;
     if (json['translations'] != null) {
       translations = <Translations>[];
       json['translations'].forEach((v) {
-        translations!.add(new Translations.fromJson(v));
+        translations!.add(Translations.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.detectedLanguage != null) {
-      data['detectedLanguage'] = this.detectedLanguage!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (detectedLanguage != null) {
+      data['detectedLanguage'] = detectedLanguage!.toJson();
     }
-    if (this.translations != null) {
-      data['translations'] = this.translations!.map((v) => v.toJson()).toList();
+    if (translations != null) {
+      data['translations'] = translations!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -46,9 +44,9 @@ class DetectedLanguage {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['language'] = this.language;
-    data['score'] = this.score;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['language'] = language;
+    data['score'] = score;
     return data;
   }
 }
@@ -69,9 +67,9 @@ class Translations {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['text'] = this.text;
-    data['to'] = this.to;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['text'] = text;
+    data['to'] = to;
     return data;
   }
 }

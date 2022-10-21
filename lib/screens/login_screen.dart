@@ -16,7 +16,6 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   int _success = 1;
-  String _userEmail = "";
 
   void _singIn() async {
     final User? user = (await _auth.signInWithEmailAndPassword(
@@ -25,7 +24,6 @@ class _LoginPageState extends State<LoginPage> {
     if (user != null) {
       setState(() {
         _success = 2;
-        _userEmail = user.email!;
         Navigator.push(
           context,
           // ignore: prefer_const_constructors
