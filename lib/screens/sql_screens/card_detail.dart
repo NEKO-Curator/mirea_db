@@ -1,10 +1,10 @@
 import 'dart:developer';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'package:mirea_db_2/api/translate_api.dart';
-import 'package:mirea_db_2/model/pos_model.dart';
+import 'package:mirea_db/api/translate_api.dart';
+import 'package:mirea_db/model/pos_model.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mirea_db_2/services/db_helper.dart';
+import 'package:mirea_db/services/db_helper.dart';
 
 class CardDetail extends StatefulWidget {
   final Pos? pos;

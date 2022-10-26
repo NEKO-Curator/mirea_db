@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mirea_db_2">
+    package="com.example.mirea_db">
    <application
-        android:label="mirea_db_2"
+        android:label="mirea_db"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

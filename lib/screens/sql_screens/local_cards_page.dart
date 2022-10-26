@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mirea_db_2/model/pos_model.dart';
-import 'package:mirea_db_2/services/db_helper.dart';
-import 'package:mirea_db_2/widgets/pos_widget.dart';
+import 'package:mirea_db/model/pos_model.dart';
+import 'package:mirea_db/services/db_helper.dart';
+import 'package:mirea_db/widgets/pos_widget.dart';
 
 import 'card_detail.dart';
 

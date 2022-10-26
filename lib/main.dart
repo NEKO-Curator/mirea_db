@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:mirea_db_2/screens/bottom_navigation.dart';
-import 'package:mirea_db_2/screens/login_screen.dart';
+import 'package:mirea_db/screens/bottom_navigation.dart';
+import 'package:mirea_db/screens/login_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

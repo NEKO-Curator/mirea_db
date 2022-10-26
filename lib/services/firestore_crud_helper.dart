@@ -1,12 +1,9 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:mirea_db_2/model/firestore_pos_model.dart';
+import 'package:mirea_db/model/firestore_pos_model.dart';
 
 class FireStoreHelper {
   static CollectionReference getAllFirestorePos() {
-    final CollectionReference pos =
-        FirebaseFirestore.instance.collection('Pos');
-    return pos;
+    return FirebaseFirestore.instance.collection('Pos');
   }
 
   static Future addFireStorePos(FirestorePosModel pos) async {

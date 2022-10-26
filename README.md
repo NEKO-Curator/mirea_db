@@ -1,2 +1,2 @@
-# mirea_db_2
+# mirea_db
  

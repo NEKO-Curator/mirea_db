@@ -2,9 +2,9 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:mirea_db_2/model/firestore_pos_model.dart';
-import 'package:mirea_db_2/screens/firestore_screens/firestore_card_detail_page.dart';
-import 'package:mirea_db_2/services/firestore_crud_helper.dart';
+import 'package:mirea_db/model/firestore_pos_model.dart';
+import 'package:mirea_db/screens/firestore_screens/firestore_card_detail_page.dart';
+import 'package:mirea_db/services/firestore_crud_helper.dart';
 
 class FireStoreCardsWidget extends StatelessWidget {
   const FireStoreCardsWidget({super.key});

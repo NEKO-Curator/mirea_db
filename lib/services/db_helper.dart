@@ -1,4 +1,4 @@
-import 'package:mirea_db_2/model/pos_model.dart';
+import 'package:mirea_db/model/pos_model.dart';
 import 'package:sqflite/sqflite.dart';
 // ignore: depend_on_referenced_packages
 import 'package:path/path.dart';

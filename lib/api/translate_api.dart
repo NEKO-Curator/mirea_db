@@ -3,7 +3,7 @@ import 'dart:convert';
 
 // ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
-import 'package:mirea_db_2/model/data_take_model.dart';
+import 'package:mirea_db/model/data_take_model.dart';
 
 Future<String> fetchTranslate(String text) async {
   var headers = {

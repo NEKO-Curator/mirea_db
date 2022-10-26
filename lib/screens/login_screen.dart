@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:form_inputs/form_inputs.dart';
-import 'package:mirea_db_2/screens/bottom_navigation.dart';
-import 'package:mirea_db_2/screens/logup_screen.dart';
+import 'package:mirea_db/screens/bottom_navigation.dart';
+import 'package:mirea_db/screens/logup_screen.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

@@ -1,13 +1,10 @@
-
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:mirea_db_2/screens/firestore_screens/firestore_card_detail_page.dart';
-import 'package:mirea_db_2/screens/sql_screens/card_detail.dart';
-import 'package:mirea_db_2/screens/firestore_screens/firestore_cards_page.dart';
-import 'package:mirea_db_2/screens/sql_screens/local_cards_page.dart';
-import 'package:mirea_db_2/screens/login_screen.dart';
-
+import 'package:mirea_db/screens/firestore_screens/firestore_card_detail_page.dart';
+import 'package:mirea_db/screens/sql_screens/card_detail.dart';
+import 'package:mirea_db/screens/firestore_screens/firestore_cards_page.dart';
+import 'package:mirea_db/screens/sql_screens/local_cards_page.dart';
+import 'package:mirea_db/screens/login_screen.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});

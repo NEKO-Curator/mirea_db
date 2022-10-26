@@ -1,8 +1,7 @@
-
 import 'package:flutter/material.dart';
-import 'package:mirea_db_2/api/translate_api.dart';
-import 'package:mirea_db_2/model/firestore_pos_model.dart';
-import 'package:mirea_db_2/services/firestore_crud_helper.dart';
+import 'package:mirea_db/api/translate_api.dart';
+import 'package:mirea_db/model/firestore_pos_model.dart';
+import 'package:mirea_db/services/firestore_crud_helper.dart';
 
 class FireStoreCardDetail extends StatefulWidget {
   final FirestorePosModel? firestorePos;
