@@ -1,16 +1,16 @@
-import 'package:mirea_db_2/model/pos_model.dart';
+import 'package:mirea_db/model/pos_model.dart';
 import 'package:sqflite/sqflite.dart';
 // ignore: depend_on_referenced_packages
 import 'package:path/path.dart';
 
 class DBHelper {
-  static const int _version = 1;
+  static const int _version = 2;
   static const String _dbName = 'Dishes.db';
   static Future<Database> _getDB() async {
     return openDatabase(
       join(await getDatabasesPath(), _dbName),
       onCreate: (db, version) async => await db.execute(
-          'CREATE TABLE Pos (id INTEGER PRIMARY KEY, title TEXT NOT NULL, description TEXT NOT NULL);'),
+          'CREATE TABLE Pos (id INTEGER PRIMARY KEY, title TEXT NOT NULL, description TEXT NOT NULL, picture BLOB);'),
       version: _version,
     );
   }

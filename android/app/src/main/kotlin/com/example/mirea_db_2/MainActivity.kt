@@ -1,4 +1,4 @@
-package com.example.mirea_db_2
+package com.example.mirea_db
 
 import io.flutter.embedding.android.FlutterActivity
 

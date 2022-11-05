@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "project_number": "394205070955",
+    "project_id": "fedorov-ovchinnikov-db",
+    "storage_bucket": "fedorov-ovchinnikov-db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:394205070955:android:bb9d160bbe00feba83d32e",
+        "android_client_info": {
+          "package_name": "com.example.mirea_db"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "394205070955-s2egrq4kgcu5625uhm0pu715aualn6ag.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mirea_db",
+            "certificate_hash": "9ffed08f889d09edbc6b3f200118d859ef01cb46"
+          }
+        },
+        {
+          "client_id": "394205070955-q25q4mld80j6vfd8tmboqlae2n46og54.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApFqYYgQdUyk1OkLSjIvbqbyGYuwhmOe4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "394205070955-q25q4mld80j6vfd8tmboqlae2n46og54.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:394205070955:android:4d429d3aa1a0e63f83d32e",
+        "android_client_info": {
+          "package_name": "com.example.mirea_db_2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "394205070955-q25q4mld80j6vfd8tmboqlae2n46og54.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApFqYYgQdUyk1OkLSjIvbqbyGYuwhmOe4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "394205070955-q25q4mld80j6vfd8tmboqlae2n46og54.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
