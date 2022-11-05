@@ -15,7 +15,7 @@ class ProfilePage extends StatelessWidget {
           Text(FirebaseAuth.instance.currentUser?.email.toString() ??
               'не удалось загрузить пользователя'),
           const Text('Ваша Роль:'),
-          Text(context.read<String?>().toString()),
+          Text(context.watch<String?>().toString()),
         ],
       ),
     );

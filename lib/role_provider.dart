@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 
 final roleProvider = FutureProvider<String?>(
   initialData: null,
-  create: (context) => getUserDBRole(FirebaseAuth.instance.currentUser),
-  lazy: false,
+  create: (context) async =>
+      await getUserDBRole(FirebaseAuth.instance.currentUser),
   child: const MyHomePage(),
 );

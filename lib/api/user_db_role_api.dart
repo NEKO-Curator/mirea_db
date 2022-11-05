@@ -9,16 +9,18 @@ import 'package:mirea_db/constants/roles_db_api_constants.dart';
 Future<String> getUserDBRole(User? user) async {
   try {
     var url = Uri.http('37.140.198.195:8080', '/$getUser/${user!.uid}');
+
     var response = await http.get(url);
     //log(response.statusCode.toString());
     if (response.statusCode == 200) {
       var jsonResponse = convert.jsonDecode(response.body) as List<dynamic>;
+      log('current user role = ${jsonResponse[0]['role'].toString()}');
       return jsonResponse[0]['role'].toString();
     } else {
       return 'error_user';
     }
   } catch (e) {
-    log('getUserDBRole => ${e.toString()}');
+    //log('getUserDBRole => ${e.toString()}');
     return 'error_user';
   }
 }
@@ -30,7 +32,10 @@ Future<bool> addUserDBRole(User? user) async {
       'user_id': user!.uid,
       'role': roleStandart,
     });
-    var response = await http.post(url, body: body);
+    var headers = {
+      'content-type': 'application/json',
+    };
+    var response = await http.post(url, body: body, headers: headers);
     //log(response.statusCode.toString());
     if (response.statusCode == 200) {
       log(response.body.toString());
