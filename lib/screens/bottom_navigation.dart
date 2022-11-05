@@ -1,10 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mirea_db/constants/all_roles_constants.dart';
 import 'package:mirea_db/screens/firestore_screens/firestore_card_detail_page.dart';
 import 'package:mirea_db/screens/sql_screens/card_detail.dart';
 import 'package:mirea_db/screens/firestore_screens/firestore_cards_page.dart';
 import 'package:mirea_db/screens/sql_screens/local_cards_page.dart';
 import 'package:mirea_db/screens/login_screen.dart';
+import 'package:provider/provider.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -16,12 +18,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final colorScheme = ColorScheme;
   final textTheme = ColorScheme;
-  int _currentIndex = 3;
+  int _currentIndex = 2;
   //int count = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _currentIndex == 3
+      appBar: _currentIndex == 2
           ? AppBar(
               backgroundColor: Colors.pink,
               automaticallyImplyLeading: false,
@@ -46,7 +48,8 @@ class _MyHomePageState extends State<MyHomePage> {
               title: const Text('MYON Cafe'),
               centerTitle: true,
             ),
-      floatingActionButton: _currentIndex != 3
+      floatingActionButton: _currentIndex != 2 &&
+              context.watch<String>() == roleAdmin
           ? FloatingActionButton.extended(
               onPressed: () async {
                 await Navigator.push(
@@ -54,9 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   MaterialPageRoute(
                     builder: (context) => _currentIndex == 0
                         ? const CardDetail()
-                        : (_currentIndex == 1
-                            ? Container()
-                            : const FireStoreCardDetail()),
+                        : (FireStoreCardDetail.createNewDetail('Pos')),
                   ),
                 ).then((_) => {
                       setState(() {}),
@@ -81,10 +82,6 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: Icon(Icons.wheelchair_pickup),
           ),
           const BottomNavigationBarItem(
-            label: 'SPRING',
-            icon: Icon(Icons.cloud),
-          ),
-          const BottomNavigationBarItem(
             label: 'FIRESTORE',
             icon: Icon(Icons.local_fire_department),
           ),
@@ -104,8 +101,6 @@ class _MyHomePageState extends State<MyHomePage> {
         key: UniqueKey(), //пригодились в жизни ключи
       );
     } else if (_currentIndex == 1) {
-      return Container();
-    } else if (_currentIndex == 2) {
       return const FireStoreCardsWidget();
     } else {
       return Container();

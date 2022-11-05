@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mirea_db/model/firestore_pos_model.dart';
@@ -12,8 +10,8 @@ class FireStoreCardsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream:
-          FireStoreHelper.getAllFirestorePos().snapshots(), //build connection
+      stream: FireStoreHelper.getAllFirestorePos('Pos')
+          .snapshots(), //build connection
       builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
         if (streamSnapshot.hasData) {
           return ListView.builder(
@@ -25,7 +23,6 @@ class FireStoreCardsWidget extends StatelessWidget {
                 margin: const EdgeInsets.all(10),
                 child: ListTile(
                   onTap: () async {
-                    log(documentSnapshot.id.toString());
                     await Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -52,7 +49,7 @@ class FireStoreCardsWidget extends StatelessWidget {
                                         MaterialStateProperty.all(Colors.red)),
                                 onPressed: () async {
                                   await FireStoreHelper.deleteFireStorePos(
-                                      documentSnapshot.id.toString());
+                                      documentSnapshot.id.toString(), 'Pos');
                                   // ignore: use_build_context_synchronously
                                   Navigator.pop(context);
                                 },

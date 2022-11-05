@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:form_inputs/form_inputs.dart';
-import 'package:mirea_db/screens/bottom_navigation.dart';
+import 'package:mirea_db/role_provider.dart';
 import 'package:mirea_db/screens/logup_screen.dart';
 
 class LoginPage extends StatefulWidget {
@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
         Navigator.push(
           context,
           // ignore: prefer_const_constructors
-          MaterialPageRoute(builder: (context) => MyHomePage()),
+          MaterialPageRoute(builder: (context) => roleProvider),
         );
       });
     } else {

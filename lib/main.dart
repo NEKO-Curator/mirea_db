@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:mirea_db/screens/bottom_navigation.dart';
+import 'package:mirea_db/role_provider.dart';
 import 'package:mirea_db/screens/login_screen.dart';
 
 void main() async {
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       ),
       title: 'MYONCafe',
       home: FirebaseAuth.instance.currentUser != null
-          ? const MyHomePage()
+          ? roleProvider
           : const LoginPage(),
     );
   }

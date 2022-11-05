@@ -6,8 +6,12 @@ import 'package:mirea_db/services/firestore_crud_helper.dart';
 class FireStoreCardDetail extends StatefulWidget {
   final FirestorePosModel? firestorePos;
   final String? docId;
-
-  const FireStoreCardDetail({Key? key, this.firestorePos, this.docId})
+  final String? collectionName;
+  const FireStoreCardDetail(
+      {Key? key, this.firestorePos, this.docId, this.collectionName})
+      : super(key: key);
+  const FireStoreCardDetail.createNewDetail(this.collectionName,
+      [Key? key, this.firestorePos, this.docId])
       : super(key: key);
 
   @override
@@ -143,10 +147,10 @@ class _FireStoreCardDetailState extends State<FireStoreCardDetail> {
                       );
                       try {
                         if (widget.firestorePos == null) {
-                          await FireStoreHelper.addFireStorePos(model);
+                          await FireStoreHelper.addFireStorePos(model, 'Pos');
                         } else {
                           await FireStoreHelper.updateFireStorePos(
-                              model, widget.docId.toString());
+                              model, widget.docId.toString(), 'Pos');
                         }
                       } catch (e) {
                         ScaffoldMessenger.of(context).showSnackBar(
