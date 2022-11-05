@@ -2,8 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:form_inputs/form_inputs.dart';
-
-import 'bottom_navigation.dart';
+import 'package:mirea_db/api/user_db_role_api.dart';
+import 'package:mirea_db/role_provider.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -27,12 +27,13 @@ class _SignupPageState extends State<SignupPage> {
         .user;
 
     if (user != null) {
+      await addUserDBRole(user);
       setState(() {
         // _sucess = true;
         // _userEmail = user.email!;
         Navigator.of(context).push(
           // ignore: prefer_const_constructors
-          MaterialPageRoute(builder: (context) => MyHomePage()),
+          MaterialPageRoute(builder: (context) => roleProvider),
         );
       });
     } else {

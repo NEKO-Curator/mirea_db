@@ -1,2 +1,3 @@
 const roleCustomUser = 'customUser';
-const roleAdmin = 'admin';
+const roleAdmin = 'error_user'; //must be admin
+const roleStandart = 'user';

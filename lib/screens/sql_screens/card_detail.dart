@@ -27,7 +27,6 @@ class _CardDetailState extends State<CardDetail> {
   @override
   Widget build(BuildContext context) {
     if (widget.pos != null) {
-      //фикс цыганского бага
       titleController.text = titleController.text.isNotEmpty &&
               widget.pos!.title != titleController.text
           ? titleController.text
@@ -139,9 +138,7 @@ class _CardDetailState extends State<CardDetail> {
                       } else {
                         await DBHelper.updatePos(model);
                       }
-
-                      // ignore: use_build_context_synchronously
-                      Navigator.pop(context);
+                      if (mounted) Navigator.pop(context, true);
                     },
                     style: ButtonStyle(
                         shape: MaterialStateProperty.all(
