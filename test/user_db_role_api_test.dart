@@ -29,6 +29,7 @@ void main() {
       uid: 'testUserAdd',
     );
     test('Попытка добавления юзера с uid, должно возвращать true', () async {
+      // не должно быть uidtestUserAdd в БД
       final fetchRole = await addUserDBRole(userAddWithUid);
       expect(fetchRole, true);
     });
