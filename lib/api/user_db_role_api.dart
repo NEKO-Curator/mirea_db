@@ -8,7 +8,7 @@ import 'package:mirea_db/constants/roles_db_api_constants.dart';
 
 Future<String> getUserDBRole(User? user) async {
   try {
-    var url = Uri.http('37.140.198.195:8080', '/$getUser/${user!.uid}');
+    var url = Uri.http(initialRoleDbServer, '/$getUser/${user!.uid}');
 
     var response = await http.get(url);
     //log(response.statusCode.toString());
@@ -27,7 +27,7 @@ Future<String> getUserDBRole(User? user) async {
 
 Future<bool> addUserDBRole(User? user) async {
   try {
-    var url = Uri.parse('http://37.140.198.195:8080/$addUser');
+    var url = Uri.parse('http://${initialRoleDbServer}/$addUser');
     var body = convert.jsonEncode(<String, String>{
       'user_id': user!.uid,
       'role': roleStandart,
