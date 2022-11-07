@@ -28,7 +28,6 @@ void main() {
       isAnonymous: false,
       uid: 'testUserAdd',
     );
-    final userAddNoUid = MockUser();
     test('Попытка добавления юзера с uid, должно возвращать true', () async {
       final fetchRole = await addUserDBRole(userAddWithUid);
       expect(fetchRole, true);
